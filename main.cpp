@@ -5,7 +5,64 @@
 //------------------------------
 
 // Write the assignment code here
+class Real {
+protected:
+    double num;
+public:
+    Real(double num) {
+        this->num = num; 
+    }
 
+    double GetReal() {
+        return num;
+    }
+
+     Real operator*(double n) {
+        num = num * n;
+        Real r(GetReal());
+        return r;
+    }
+};
+
+
+
+class Complex : public Real {
+protected:
+    double imaginary;
+
+public:
+
+    Complex(double real, double imag) : Real(real), imaginary(imag) {}
+
+
+    double GetImaginary() {
+        return imaginary;
+    }
+
+    Complex operator*(double n) {
+        Complex r(GetReal() * n, GetImaginary() * n);
+        return r;
+    }
+};
+
+
+class Surreal : public Complex {
+    private:
+    double surr;
+
+    public:
+
+    Surreal(double real, double imag, double sur) : Complex(real, imag), surr(sur) {}
+
+    double GetSurreal() {
+        return surr;
+    }
+
+    Surreal operator*(double n)  {
+        Surreal r(GetReal() * n, GetImaginary() * n, GetSurreal() * n);
+        return r;
+    }
+};
 
 //------------------------------
 //   DO NOT MODIFY TEST CASES
